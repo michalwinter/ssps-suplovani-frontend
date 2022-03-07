@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    seenUpdate: null,
     dark: false,
     grade: "",
     days: [],
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setDays(state, days) {
       state.days = days
+    },
+    setSeenUpdate(state, seenUpdate) {
+      state.seenUpdate = seenUpdate
     }
   },
   actions: {
@@ -39,7 +43,8 @@ export default new Vuex.Store({
       reducer: (state) => ({
         dark: state.dark,
         grade: state.grade,
-        days: state.days
+        days: state.days,
+        seenUpdate: state.seenUpdate
       }),
     }).plugin,
   ],

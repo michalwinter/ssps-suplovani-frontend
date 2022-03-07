@@ -12,10 +12,14 @@ html,
 }
 
 #body{
+  height: unset;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   color: $themeBlack;
   font-weight: 700;
+
+  @import "./update";
 
   header {
     display: flex;
@@ -42,7 +46,6 @@ html,
   }
 
   main {
-    flex-grow: 1;
     box-sizing: border-box;
     padding: 20px;
     display: flex;
@@ -103,7 +106,7 @@ html,
             background: rgba($color: $themeBlack, $alpha: 0.1);
 
             &.highlight {
-              background: rgba($color: $themeRed, $alpha: 0.2) !important;
+              background: rgba($color: $themePrimaryLight, $alpha: 1);
             }
           }
 
@@ -188,9 +191,29 @@ html,
       }
     }
 
+    main {
+      section.day {
+        .events {
+          .event {
+            .grade { 
+              background: rgba($color: $themeWhite, $alpha: 0.15);
+      
+              &.highlight {
+                background: rgba($color: $themePrimary, $alpha: 1);
+              }
+            }
+          }
+        }
+      }
+    }
+
     .event {
       .grade { 
-        background: rgba($color: $themeWhite, $alpha: 0.15) !important;
+        background: rgba($color: $themeWhite, $alpha: 0.15);
+
+        &.highlight {
+          background: rgba($color: $themePrimary, $alpha: 1);
+        }
       }
     }
 

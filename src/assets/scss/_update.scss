@@ -1,0 +1,96 @@
+article.update {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+  padding: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div.update-clickout {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+
+  div.update-content {
+    z-index: 51;
+    width: 100%;
+    max-width: 500px;
+
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: $themeWhite;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: 1.2rem;
+        color: $themeGray;
+      }
+
+      button {
+        all: unset;
+        width: 25px;
+
+        font-size: 1.2rem;
+
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        list-style: inherit;
+        list-style-position: inside;
+
+        li {
+          font-size: 0.9rem;
+          color: $themeGray;
+        }
+      }
+    }
+
+  }
+}
+
+&.dark {
+  article.update {
+    div.update-content {
+      background: $themeGray;
+
+      .header p {
+        color: $themeWhiteDark;
+      }
+
+      .content ul li {
+        color: $themeWhiteDark;
+      }
+    }
+  }
+}

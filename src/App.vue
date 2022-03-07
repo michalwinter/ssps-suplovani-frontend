@@ -1,5 +1,24 @@
 <template>
   <div id="body" :class="{ dark }">
+    <article class="update" v-show="seenUpdate !== version">
+      <div class="update-clickout" @click="seenUpdate = version"></div>
+      <div class="update-content">
+        <div class="header">
+          <p>Verze {{ version }}</p>
+          <button @click="seenUpdate = version">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="content">
+          <strong>Novinky:</strong>
+          <ul>
+            <li>
+              Vylepšení vzhledu - barvy zvýrazněné třídy
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
     <header>
       <button @click="dark = !dark">
         <i v-if="!dark" class="fas fa-moon"></i>
@@ -73,6 +92,7 @@
 
 <script>
 import moment from "moment";
+import { version } from "../package.json";
 export default {
   name: "App",
   data: () => ({
@@ -80,17 +100,13 @@ export default {
     settings: false,
     newGrade: "",
     todayDate: "",
-    intervals: [],
+    version,
   }),
   mounted() {
     this.$store.dispatch("getData");
     let todayDate = moment().locale("cs").format("dddd D. M. YYYY")
     this.todayDate = todayDate.charAt(0).toUpperCase() + todayDate.slice(1);
     this.newGrade = this.$store.state.grade || "";
-
-    this.intervals.push(setInterval(() => {
-      this.$store.dispatch("getData");
-    }, 60000));
   },
   computed: {
     dark: {
@@ -99,6 +115,14 @@ export default {
       },
       set(value) {
         this.$store.commit("setDark", value);
+      },
+    },
+    seenUpdate: {
+      get() {
+        return this.$store.state.seenUpdate;
+      },
+      set(value) {
+        this.$store.commit("setSeenUpdate", value);
       },
     },
     grade: {
